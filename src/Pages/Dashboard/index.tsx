@@ -19,12 +19,14 @@ function Dashboard() {
         <Tabs defaultValue="account">
           <TabsList>
             <TabsTrigger value="users">Editar Utilizadores</TabsTrigger>
-            <TabsTrigger value="password">Password</TabsTrigger>
+            <TabsTrigger value="password">outras coisas</TabsTrigger>
           </TabsList>
           <TabsContent value="users">
             <ListUsers></ListUsers>
           </TabsContent>
-          <TabsContent value="password">Change your password here.</TabsContent>
+          <TabsContent value="password">
+            Mostrar outras funcionalidade exemplo graficos
+          </TabsContent>
         </Tabs>
 
         <Button onClick={Logout}>Logout</Button>
