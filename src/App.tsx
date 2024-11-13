@@ -8,11 +8,15 @@ import { AuthProvider } from "./context/AuthProvider";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ToDoList from "./Pages/To-do-List";
 import NotFoundPage from "./Pages/NotFound";
+import ThemeToggle from "./components/ThemeToggle";
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
+        <div className="p-4">
+          <ThemeToggle /> {/* Adicione o botão de alternância de tema */}
+        </div>
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />

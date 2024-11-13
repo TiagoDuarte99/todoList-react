@@ -18,7 +18,9 @@ function Dashboard() {
       <div className="px-12 pb-12">
         <Tabs defaultValue="account">
           <TabsList>
-            <TabsTrigger value="users">Editar Utilizadores</TabsTrigger>
+            <TabsTrigger value="users" aria-selected="true">
+              Editar Utilizadores
+            </TabsTrigger>
             <TabsTrigger value="password">outras coisas</TabsTrigger>
           </TabsList>
           <TabsContent value="users">
