@@ -13,7 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Toaster } from "@/components/ui/toaster";
 
 const ListUsers = () => {
   const [page, countPage] = useState(1);
@@ -41,10 +40,7 @@ const ListUsers = () => {
   return (
     <div>
       <DataTable columns={UserColumns} data={users} />
-      <Toaster />
-
-
-
+      
       <Pagination className="pt-6">
         <PaginationContent>
           <PaginationItem>

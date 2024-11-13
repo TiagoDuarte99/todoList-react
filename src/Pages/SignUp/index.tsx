@@ -8,7 +8,6 @@ import { LogIn } from "lucide-react";
 import { CreatUser } from "../SignUp/creatUserService";
 import { useNavigate } from "react-router-dom";
 import ImagemLogin from "../../../public/freepik__background__72100.png";
-import { Toaster } from "@/components/ui/toaster";
 import { toast } from "@/hooks/use-toast";
 
 function SignUp() {
@@ -121,7 +120,7 @@ function SignUp() {
           </div>
         </form>
       </div>
-      <Toaster />
+      
     </div>
   );
 }

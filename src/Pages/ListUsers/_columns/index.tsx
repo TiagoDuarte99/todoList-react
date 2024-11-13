@@ -3,7 +3,8 @@
 import { Badge } from "@/components/ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import { CircleIcon } from "lucide-react";
-import DeleteUserButton from "../_components/delete-user-button";
+import DeleteUserButton from "../_components/deleteUserButton";
+import EditUserButton from "../_components/editUserButton";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -53,6 +54,7 @@ export const UserColumns: ColumnDef<Users>[] = [
     cell: ({ row: { original: user } }) => {
       return (
         <div className="space-x-1">
+          <EditUserButton userId={user.id} />
           <DeleteUserButton userId={user.id} />
         </div>
       );

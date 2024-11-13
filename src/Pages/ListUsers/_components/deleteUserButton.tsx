@@ -1,4 +1,3 @@
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,22 +18,32 @@ interface DeleteUserButtonProps {
   userId: number;
 }
 
-const DeleteUserButton = ({
-  userId,
-}: DeleteUserButtonProps) => {
+const DeleteUserButton = ({ userId }: DeleteUserButtonProps) => {
   const handleConfirmDeleteClick = async () => {
     try {
-      console.log(userId);
-      const response = await deleteUser(userId)
-      console.log(response);
-      toast({
-        variant: "success",
-        title: "Sucesso",
-        description: "Utilizador eliminado com sucesso",
-      });
+      const response = await deleteUser(userId);
+      console.log(response, "response");
+      if (response.success) {
+        toast({
+          variant: "success",
+          title: "Sucesso",
+          description: "Utilizador eliminado com sucesso",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Erro ao eliminar utilizador",
+          description: response.message.response.data.error,
+        });
+      }
     } catch (error) {
       console.error(error);
-/*       toast.error("Ocorreu um erro ao deletar a transação."); */
+      toast({
+        variant: "destructive",
+        title: "error",
+        description: "erro",
+      });
+      /*       toast.error("Ocorreu um erro ao deletar a transação."); */
     }
   };
   return (
@@ -47,7 +56,7 @@ const DeleteUserButton = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Você deseja realmente deletar essa transação?
+            Você deseja realmente eliminar esse Utilizador?
           </AlertDialogTitle>
           <AlertDialogDescription>
             Essa ação não pode ser desfeita.

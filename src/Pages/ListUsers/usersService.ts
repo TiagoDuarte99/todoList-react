@@ -36,6 +36,6 @@ export async function deleteUser(userId: number) {
     console.log(response);
     return { success: true };
   } catch (error) {
-    return { success: false, message: error };
+    return { success: false, message: error};
   }
 }

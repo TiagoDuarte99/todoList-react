@@ -9,13 +9,15 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import ToDoList from "./Pages/To-do-List";
 import NotFoundPage from "./Pages/NotFound";
 import ThemeToggle from "./components/ThemeToggle";
+import { Toaster } from "./components/ui/toaster";
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
         <div className="p-4">
-          <ThemeToggle /> 
+          <ThemeToggle />
+          <Toaster></Toaster>
         </div>
         <Routes>
           <Route path="/" element={<SignIn />} />
