@@ -1,6 +1,6 @@
 import { DataTable } from "@/components/ui/data-table";
 
-import { GettUsersPage } from "./getUsers";
+import { GetUsersPage } from "./usersService";
 import { useEffect, useState } from "react";
 import { UserColumns } from "./_columns";
 
@@ -13,6 +13,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Toaster } from "@/components/ui/toaster";
 
 const ListUsers = () => {
   const [page, countPage] = useState(1);
@@ -23,7 +24,7 @@ const ListUsers = () => {
 
   const GettUsers = async (page: number) => {
     try {
-      const data = await GettUsersPage(page);
+      const data = await GetUsersPage(page);
       setUsers(data.users);
       const pagesTotal = Math.ceil(data.totalCount / 12);
       setTotalPages(pagesTotal);
@@ -39,33 +40,37 @@ const ListUsers = () => {
 
   return (
     <div>
-      <DataTable columns={UserColumns} data={users} />;
+      <DataTable columns={UserColumns} data={users} />
+      <Toaster />
 
-      <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-      
+
+
+      <Pagination className="pt-6">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              1
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              2
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 };

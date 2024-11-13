@@ -1,6 +1,6 @@
 import api from '../../services/axiosConfig';
 
-export async function GettUsersPage(page: number) {
+export async function GetUsersPage(page: number) {
   const token = localStorage.getItem('token');
   console.log(token)
   try {
@@ -16,6 +16,25 @@ export async function GettUsersPage(page: number) {
     const users = response.data
     console.log(users);
     return { users, totalCount };
+  } catch (error) {
+    return { success: false, message: error };
+  }
+}
+
+export async function deleteUser(userId: number) {
+  const token = localStorage.getItem('token');
+  console.log(token)
+  try {
+    const response = await api.delete(
+      `/users/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      }
+    );
+    console.log(response);
+    return { success: true };
   } catch (error) {
     return { success: false, message: error };
   }

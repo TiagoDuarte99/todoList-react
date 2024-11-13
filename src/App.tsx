@@ -15,7 +15,7 @@ const App: React.FC = () => {
     <AuthProvider>
       <Router>
         <div className="p-4">
-          <ThemeToggle /> {/* Adicione o botão de alternância de tema */}
+          <ThemeToggle /> 
         </div>
         <Routes>
           <Route path="/" element={<SignIn />} />
