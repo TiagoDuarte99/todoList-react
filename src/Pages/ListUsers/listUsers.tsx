@@ -1,5 +1,4 @@
 import { DataTable } from "@/components/ui/data-table";
-
 import { GetUsersPage } from "./usersService";
 import { useEffect, useState } from "react";
 import { UserColumns } from "./_columns";
@@ -7,63 +6,60 @@ import { UserColumns } from "./_columns";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
 const ListUsers = () => {
-  const [page, countPage] = useState(1);
-  /* const [totalCount, setTotalCount] = useState(0); */
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
   const [users, setUsers] = useState([]);
 
-  const GettUsers = async (page: number) => {
+  const fetchUsers = async (pageNumber: number) => {
     try {
-      const data = await GetUsersPage(page);
+      const data = await GetUsersPage(pageNumber);
       setUsers(data.users);
-      const pagesTotal = Math.ceil(data.totalCount / 12);
-      setTotalPages(pagesTotal);
+      setTotalPages(Math.ceil(data.totalCount / 12));
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    GettUsers(page);
-    countPage(1);
-  }, [page, totalPages]);
+    fetchUsers(page);
+  }, [page]);
+
+  const handleIncrement = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
 
   return (
     <div>
-      <DataTable columns={UserColumns} data={users} />
-      
+        <DataTable columns={UserColumns} data={users} />
+
       <Pagination className="pt-6">
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious
+              onClick={handleDecrement}
+              isActive={page > 1}
+            />
           </PaginationItem>
+
           <PaginationItem>
-            <PaginationLink href="#" isActive>
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext
+              onClick={handleIncrement}
+              isActive={page < totalPages}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
