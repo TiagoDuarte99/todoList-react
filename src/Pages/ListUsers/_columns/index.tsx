@@ -54,7 +54,7 @@ export const UserColumns: ColumnDef<Users>[] = [
     cell: ({ row: { original: user } }) => {
       return (
         <div className="space-x-1">
-          <EditUserButton userId={user.id} />
+          <EditUserButton user={user} />
           <DeleteUserButton userId={user.id} />
         </div>
       );
