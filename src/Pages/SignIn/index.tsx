@@ -10,6 +10,7 @@ import { LogIn } from "lucide-react";
 import { AuthenticateUser } from "../SignIn/authsService";
 import { useNavigate } from "react-router-dom";
 import ImagemLogin from "../../../public/freepik__background__72100.png";
+import { toast } from "@/hooks/use-toast";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -19,15 +20,29 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const response = await AuthenticateUser(email, password);
-    if (response) {
-      login(response.token);
-      if (response.payload.id === 1) {
-        navigate("/dashboard");
+    try {
+      const response = await AuthenticateUser(email, password);
+      if (response.success) {
+        login(response.message.token);
+        if (response.message.payload.id === 1) {
+          navigate("/dashboard");
+        } else {
+          navigate("/to-do-list");
+        }
       } else {
-        navigate("/to-do-list");
+        toast({
+          variant: "destructive",
+          title: "Erro ao registrar utilizador",
+          description: response.message.response.data.error,
+        });
       }
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Erro desconhecido",
+        description: "Ocorreu um erro inesperado.",
+      });
     }
   };
 
