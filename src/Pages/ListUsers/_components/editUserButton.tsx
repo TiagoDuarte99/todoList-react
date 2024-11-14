@@ -18,6 +18,7 @@ import { PencilIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { editUser } from "../usersService";
 import { Switch } from "@/components/ui/switch";
+import { PasswordInput } from "@/components/ui/password-input";
 
 interface User {
   id: number;
@@ -63,6 +64,9 @@ const EditUserButton = ({ user }: EditUserButtonProps) => {
           title: "Sucesso",
           description: "Utilizador editado com sucesso",
         });
+        setEmail("");
+        setPassword("");
+        setNewPassword("");
       } else {
         toast({
           variant: "destructive",
@@ -100,24 +104,24 @@ const EditUserButton = ({ user }: EditUserButtonProps) => {
           />
 
           <Label htmlFor="password">Password Antiga</Label>
-          <Input
-            type="password"
+          <PasswordInput
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             id="password"
-            placeholder="Insira Confirmar Password"
+            placeholder="Insira Password antiga"
           />
 
           <Label htmlFor="newPassword">Nova Password</Label>
-          <Input
-            type="password"
+          <PasswordInput
+            value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             id="newPassword"
-            placeholder="Insira Confirmar Password"
+            placeholder="Insira a nova Password"
           />
 
           <Label htmlFor="confirmNewPassword">Confirmar Password</Label>
-          <Input
-            type="password"
+          <PasswordInput
+            value={confirmNewPassword}
             onChange={(e) => setConfirmNewPassword(e.target.value)}
             id="confirmNewPassword"
             placeholder="Insira Confirmar Password"

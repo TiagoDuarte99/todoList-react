@@ -9,6 +9,7 @@ import { CreatUser } from "../SignUp/creatUserService";
 import { useNavigate } from "react-router-dom";
 import ImagemLogin from "../../../public/freepik__background__72100.png";
 import { toast } from "@/hooks/use-toast";
+import { PasswordInput } from "@/components/ui/password-input";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -40,7 +41,7 @@ function SignUp() {
           description: response.message.response.data.error,
         });
       }
-    }  catch (error) {
+    } catch (error) {
       console.error(error);
       toast({
         variant: "destructive",
@@ -87,8 +88,8 @@ function SignUp() {
 
           <div className="mb-4">
             <Label htmlFor="password">Password</Label>
-            <Input
-              type="password"
+            <PasswordInput
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               id="password"
               placeholder="Insira Password"
@@ -97,8 +98,8 @@ function SignUp() {
 
           <div className="mb-4">
             <Label htmlFor="password">Confirmar Password</Label>
-            <Input
-              type="password"
+            <PasswordInput
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               id="confirmPassword"
               placeholder="Insira Confirmar Password"
@@ -110,17 +111,16 @@ function SignUp() {
             </Button>
             <Button type="submit" variant="default" disabled={loading}>
               {loading ? (
-                "Registando..."
+                "A criar conta..."
               ) : (
                 <>
-                  <LogIn /> Registar
+                  <LogIn /> Criar Conta
                 </>
               )}
             </Button>
           </div>
         </form>
       </div>
-      
     </div>
   );
 }

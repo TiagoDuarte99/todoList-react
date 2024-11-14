@@ -11,6 +11,7 @@ import { AuthenticateUser } from "../SignIn/authsService";
 import { useNavigate } from "react-router-dom";
 import ImagemLogin from "../../../public/freepik__background__72100.png";
 import { toast } from "@/hooks/use-toast";
+import { PasswordInput } from "@/components/ui/password-input";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -71,11 +72,12 @@ const LoginPage = () => {
 
           <div className="mb-4">
             <Label htmlFor="password">Password</Label>
-            <Input
-              type="password"
+            <PasswordInput
+              id="current_password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
-              id="password"
               placeholder="Insira Password"
+              autoComplete="current-password"
             />
           </div>
 
