@@ -56,18 +56,18 @@ function SignUp() {
   const navigateToLogin = () => navigate("/");
 
   return (
-    <div className="grid h-full grid-cols-2">
+    <div className="grid h-full grid-cols-1 md:grid-cols-2 gap-4">
       {/* ESQUERDA */}
-      <div className="mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
+      <div className="order-2 md:order-1 mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
         <img
           src={ImagemLogin}
           alt="Descrição da imagem"
-          className="max-h-[550px] max-w-[550px]"
+          className="w-full max-w-[550px] h-auto"
         />
       </div>
 
       {/* DIREITA */}
-      <div className="mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
+      <div className="order-1 md:order-2 mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
         <h1 className="mb-3 text-4xl font-bold">Bem-vindo, Crie uma conta</h1>
         <p className="mb-8 text-muted-foreground">
           Bem-vindo à sua plataforma de produtividade! Organize as suas tarefas,

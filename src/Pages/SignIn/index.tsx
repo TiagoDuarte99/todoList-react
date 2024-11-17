@@ -50,7 +50,7 @@ const LoginPage = () => {
   const navigateToSignUp = () => navigate("/signup");
 
   return (
-    <div className="grid h-full grid-cols-2">
+    <div className="grid h-full grid-cols-1 md:grid-cols-2 gap-4">
       {/* ESQUERDA */}
       <div className="mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
         <h1 className="mb-3 text-4xl font-bold">Bem-vindo, faça Login</h1>
@@ -96,7 +96,7 @@ const LoginPage = () => {
         <img
           src={ImagemLogin}
           alt="Descrição da imagem"
-          className="max-h-[550px] max-w-[550px]"
+          className="w-full max-w-[550px] h-auto"
         />
       </div>
     </div>
