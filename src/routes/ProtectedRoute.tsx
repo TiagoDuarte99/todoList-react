@@ -1,25 +1,27 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth"; 
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated, id } = useAuth();
+  const { isAuthenticated, id } = useAuth(); 
   const navigate = useNavigate();
 
-  console.log("protected", isAuthenticated, id);
   useEffect(() => {
     if (!isAuthenticated) {
-      console.log("navegar para login");
-      navigate("/"); // Redireciona para a página de login
+      navigate("/"); 
+    } else if (id !== 1 && window.location.pathname === "/dashboard") {
+      navigate("/to-do-list");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, id, navigate]);
 
-  // Verifica se o usuário está logado e se tem o id correto para acessar a página
-  if (!isAuthenticated) {
-    return null; // Não renderiza nada enquanto não estiver autenticado
+  if (
+    !isAuthenticated ||
+    (id !== 1 && window.location.pathname === "/dashboard")
+  ) {
+    return null;
   }
 
-  return children; // Se tudo estiver correto, renderiza a página
+  return children; 
 };
 
 export default ProtectedRoute;
