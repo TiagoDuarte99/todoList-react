@@ -1,12 +1,12 @@
 import api from '../../services/axiosConfig';
 
-export async function CreatUser(email: string, password: string, confirmPassword: string) {
+export async function CreatUser(email: string, nameUser: string, password: string, confirmPassword: string) {
   try {
-    const data = { email, password, confirmPassword }
-    const response = await api.post('/auths/signup', data);
-    return { success: true, message: response.data};
-  }catch (error) {
+    const data = { email, name : nameUser, password, confirmPassword }
+    const response = await api.post('/create-user', data);
+    return { success: true, message: response.data };
+  } catch (error) {
     console.log(error)
-    return { success: false, message: error};
+    return { success: false, message: error };
   }
 }

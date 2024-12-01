@@ -15,6 +15,8 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [nameUser, setNameUser] = useState("");
+
 
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +27,7 @@ function SignUp() {
     setLoading(true);
 
     try {
-      const response = await CreatUser(email, password, confirmPassword);
+      const response = await CreatUser(email, nameUser, password, confirmPassword);
       console.log(response);
       if (response.success) {
         console.log(response.message, "pagina");
@@ -83,6 +85,16 @@ function SignUp() {
               onChange={(e) => setEmail(e.target.value)}
               id="email"
               placeholder="Insira Email"
+            />
+          </div>
+
+          <div className="mb-4">
+            <Label htmlFor="nameUser">Nome</Label>
+            <Input
+              type="text"
+              onChange={(e) => setNameUser(e.target.value)}
+              id="nameUser"
+              placeholder="Insira o seu nome"
             />
           </div>
 

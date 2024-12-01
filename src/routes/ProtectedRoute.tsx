@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth"; 
+import { useAuth } from "../hooks/useAuth";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated, id } = useAuth(); 
+  const { isAuthenticated, id } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/"); 
+      navigate("/");
     } else if (id !== 1 && window.location.pathname === "/dashboard") {
+      console.log(id, "id protected route");
       navigate("/to-do-list");
     }
   }, [isAuthenticated, id, navigate]);
@@ -21,7 +22,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     return null;
   }
 
-  return children; 
+  return children;
 };
 
 export default ProtectedRoute;

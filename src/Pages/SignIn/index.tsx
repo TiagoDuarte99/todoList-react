@@ -23,8 +23,9 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await AuthenticateUser(email, password);
+      console.log(response);
       if (response.success) {
-        login(response.message.token);
+        login(response.message.token, response.message.id);
         if (response.message.payload.id === 1) {
           navigate("/dashboard");
         } else {

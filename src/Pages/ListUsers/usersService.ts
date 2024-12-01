@@ -5,7 +5,7 @@ export async function GetUsersPage(page: number) {
   console.log(token)
   try {
     const response = await api.get(
-      `/users/all?page=${page}`,
+      `/find-users?page=${page}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -13,8 +13,8 @@ export async function GetUsersPage(page: number) {
       }
     );
     const totalCount = response.headers['x-total-count'];
-    const users = response.data
-    console.log(users);
+    const {users} = response.data
+    console.log(users, totalCount);
     return { users, totalCount };
   } catch (error) {
     return { success: false, message: error };
@@ -26,7 +26,7 @@ export async function deleteUser(userId: number) {
   console.log(token)
   try {
     const response = await api.delete(
-      `/users/${userId}`,
+      `/delete-user/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ export async function editUser({
   const token = localStorage.getItem('token');
   try {
     const response = await api.put(
-      `/users/${userId}`,
+      `/update-user/${userId}`,
       data, // Dados da requisição (corpo)
       {
         headers: {

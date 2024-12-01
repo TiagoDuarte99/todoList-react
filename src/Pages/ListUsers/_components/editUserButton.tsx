@@ -23,7 +23,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 interface User {
   id: number;
   email: string;
-  lastTimeLogin: Date;
+  name: string;
   active: boolean;
 }
 

@@ -5,15 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { CircleIcon } from "lucide-react";
 import DeleteUserButton from "../_components/deleteUserButton";
 import EditUserButton from "../_components/editUserButton";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Users = {
-  id: number;
-  email: string;
-  active: boolean;
-  lastTimeLogin: Date;
-};
+import { Users } from "@/models/users";
 
 export const UserColumns: ColumnDef<Users>[] = [
   {
@@ -23,6 +15,10 @@ export const UserColumns: ColumnDef<Users>[] = [
   {
     accessorKey: "email",
     header: "Email Utilizador",
+  },
+  {
+    accessorKey: "name",
+    header: "Nome do Utilizador",
   },
   {
     accessorKey: "active",
@@ -46,8 +42,38 @@ export const UserColumns: ColumnDef<Users>[] = [
     },
   },
   {
-    accessorKey: "lastTimeLogin",
-    header: "Ultimo Login",
+    accessorKey: "created_at",
+    header: "Data Criação",
+    cell: ({ row: { original: user } }) => {
+      console.log(user);
+      const formattedDate = new Date(user.created_at).toLocaleDateString(
+        "pt-BR",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }
+      );
+
+      return formattedDate;
+    },
+  },
+  {
+    accessorKey: "updated_at",
+    header: "Ultima atualização",
+    cell: ({ row: { original: user } }) => {
+      console.log(user);
+      const formattedDate = new Date(user.created_at).toLocaleDateString(
+        "pt-BR",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }
+      );
+
+      return formattedDate;
+    },
   },
   {
     accessorKey: "actions",
